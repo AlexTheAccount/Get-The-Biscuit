@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjst3v4cmfhrq"]
+
+[ext_resource type="PackedScene" uid="uid://dg183frdfdw47" path="res://Tscn/Player.tscn" id="1_3noxb"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_hma3d"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3noxb"]
+
+[node name="Level" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(3.8, 0, 0, 0, 1, 0, 0, 0, 4.2, 0, 0, 0)
+mesh = SubResource("BoxMesh_hma3d")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_3noxb")
+
+[node name="Player" parent="." instance=ExtResource("1_3noxb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.478022, 1.24273, 0.180929)

@@ -4,10 +4,13 @@ extends CharacterBody3D
 const SPEED = 5.0
 const JUMP_VELOCITY = 10
 
-@export var coyoteTime := 0.1         # seconds after leaving ground you can still jump
-@export var jumpBufferTime := 0.2    # seconds before landing your jump input is stored for
+@export var short_jump_gravity_mult := 2.0 # gravity multiplier when jump is released early
+@export var fall_gravity_mult := 2.5 # gravity multiplier on the fall-down
 
+@export var coyoteTime := 0.1 # seconds after leaving ground you can still jump
 var coyoteTimer := 0.0
+
+@export var jumpBufferTime := 0.2 # seconds before landing your jump input is stored for
 var bufferTimer := 0.0
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -37,8 +40,21 @@ func _physics_process(delta: float) -> void:
 		coyoteTimer = 0
 	
 	# Apply gravity
-	if not is_on_floor():
-		velocity += get_gravity() * delta
+	# Grab the base gravity vector
+	var gravity = get_gravity()
+	
+	# Apply variable gravity
+	if velocity.y < 0:
+		# Player is falling: heavier gravity for snappy fall
+		velocity += gravity * fall_gravity_mult * delta
+	
+	elif velocity.y > 0 and not Input.is_action_pressed("ui_accept"):
+		# Player released jump while ascending: cut jump short
+		velocity += gravity * short_jump_gravity_mult * delta
+	
+	else:
+		# Normal ascent (holding jump) or grounded
+		velocity += gravity * delta
 	
 	# Camera-relative movement
 	var inputVec := Input.get_vector("Player Left", "Player Right", "Player Up", "Player Down")

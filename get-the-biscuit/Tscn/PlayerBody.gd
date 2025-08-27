@@ -29,9 +29,16 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 
+# zoom vars
+@export var minZoom := 2.0
+@export var maxZoom := 8.0
+@export var zoomSpeed := 1.0
+var targetZoom := 4.0  # also the starting zoom
+
 # camera movement/pivot logic
 @onready var camera := $CamPivot/SpringCamArm3D/Camera3D as Camera3D
 @onready var cameraPivot := $CamPivot as Node3D
+@onready var cameraSpringArm := $CamPivot/SpringCamArm3D as SpringArm3D
 
 @export_range(0.0, 1.0) var mouseSensitivity = 0.01
 @export var cameraDistance = 4.0
@@ -52,3 +59,15 @@ func _unhandled_input(event):
 		cameraPivot.rotation.y = rotationY
 		camera.rotation.x = rotationX
 		
+		# zoom in/out logic
+	elif event is InputEventMouseButton:
+		if Input.is_action_pressed("Zoom In"):
+			targetZoom = max(minZoom, targetZoom - zoomSpeed)
+		elif Input.is_action_pressed("Zoom Out"):
+			targetZoom = min(maxZoom, targetZoom + zoomSpeed)
+		
+# Smoothly Applies Zoom
+func _process(delta):
+	var currentZoom = cameraSpringArm.spring_length
+	var newZoom = lerp(currentZoom, targetZoom, 10 * delta)
+	cameraSpringArm.spring_length = newZoom

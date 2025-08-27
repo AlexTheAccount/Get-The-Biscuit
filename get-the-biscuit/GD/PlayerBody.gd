@@ -1,5 +1,6 @@
 extends CharacterBody3D
 
+@onready var HUD = $HUD
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 10
@@ -12,6 +13,10 @@ var coyoteTimer := 0.0
 
 @export var jumpBufferTime := 0.2 # seconds before landing your jump input is stored for
 var bufferTimer := 0.0
+
+# Inventory
+var inventory := {}
+
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 

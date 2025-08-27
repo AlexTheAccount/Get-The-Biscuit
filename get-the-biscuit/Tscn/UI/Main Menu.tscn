@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cm6at32y0pl8t"]
 
-[ext_resource type="Script" uid="uid://dqvwvtgtgckcu" path="res://GD/MMControl.gd" id="1_brtuo"]
+[ext_resource type="Script" uid="uid://dqvwvtgtgckcu" path="res://GD/MMControl.gd" id="1_vuv5a"]
 
 [node name="Main Menu" type="Control"]
 layout_mode = 3
@@ -10,7 +10,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("1_brtuo")
+script = ExtResource("1_vuv5a")
 
 [node name="Play" type="Button" parent="."]
 layout_mode = 1

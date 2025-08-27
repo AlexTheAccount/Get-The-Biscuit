@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwtiheu2rafh7"]
+
+[ext_resource type="PackedScene" uid="uid://cbqmloqvf745h" path="res://Tscn/Pickup/Pickup.tscn" id="1_mnfe8"]
+
+[node name="Biscuit" instance=ExtResource("1_mnfe8")]
+itemId = "Biscuit"

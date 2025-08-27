@@ -22,3 +22,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.478022, 1.24273, 0.180929)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.978166, 0.207826, 0, -0.207826, 0.978166, 0, 0, 0)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.38003, 0, 0, 0, 1, 0, 0, 0, 1.85193, 0, 0.884249, -1.79798)
+mesh = SubResource("BoxMesh_hma3d")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D"]
+shape = SubResource("BoxShape3D_3noxb")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.38003, 0, 0, 0, 1, 0, 0, 0, 1.85193, 0, 0.884249, 2.14397)
+mesh = SubResource("BoxMesh_hma3d")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D3/StaticBody3D"]
+shape = SubResource("BoxShape3D_3noxb")

@@ -20,9 +20,9 @@ func _physics_process(delta: float) -> void:
 	var inputVec := Input.get_vector("Player Left", "Player Right", "Player Up", "Player Down")
 	var camYaw := cameraPivot.global_transform.basis.get_euler().y
 	var camBasis := Basis(Vector3.UP, camYaw)
-
+	
 	var moveDir := (camBasis * Vector3(inputVec.x, 0, inputVec.y)).normalized()
-
+	
 	if moveDir != Vector3.ZERO:
 		velocity.x = moveDir.x * SPEED
 		velocity.z = moveDir.z * SPEED
@@ -31,6 +31,17 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+
+# Camera lag
+@export var camHeight := 1.6
+@export var maxLagDistance := 1.2 # max trailing distance behind motion
+@export var lagResponse := 10.0 # higher = snappier
+@export var lagAxisWeight := Vector3(1.0, 0.0, 1.0) # lag
+
+@export var maxVerticalLag := 0.5        # how far up/down the camera trails
+@export var verticalLagResponse := 5.0   # smoothness on Y axis
+var lagOffset := Vector3.ZERO
+var basePivotPos: Vector3
 
 # zoom vars
 @export var minZoom := 2.0
@@ -69,8 +80,43 @@ func _unhandled_input(event):
 		elif Input.is_action_pressed("Zoom Out"):
 			targetZoom = min(maxZoom, targetZoom + zoomSpeed)
 		
-# Smoothly Applies Zoom
 func _process(delta):
+	# Smoothly Applies Zoom
 	var currentZoom = cameraSpringArm.spring_length
 	var newZoom = lerp(currentZoom, targetZoom, 10 * delta)
 	cameraSpringArm.spring_length = newZoom
+	
+	# Camera lag based on player velocity
+	var fullVelo := Vector3(velocity.x, 0, velocity.z)
+	var speed := fullVelo.length()
+	
+#    We invert Y so camera lags opposite player motion (rising = camera dips, falling = camera rises)
+	var rawYoffset := -velocity.y * 0.1 # scale factor—you can tweak
+	var desiredY = clamp(rawYoffset, -maxVerticalLag, maxVerticalLag)
+	var desiredXZ := Vector3.ZERO
+	
+	var desiredOffset := Vector3(
+		desiredXZ.x,
+		desiredY,
+		desiredXZ.z
+	)
+	if speed > 0.05:
+		desiredOffset = -fullVelo.normalized() * maxLagDistance
+	
+	# Smooth separately on each axis
+	var smoothHor := 1.0 - exp(-lagResponse * delta)
+	var smoothVert := 1.0 - exp(-verticalLagResponse * delta)
+	lagOffset.x = lerp(lagOffset.x, desiredOffset.x, smoothHor)
+	lagOffset.y = lerp(lagOffset.y, desiredOffset.y, smoothVert)
+	lagOffset.z = lerp(lagOffset.z, desiredOffset.z, smoothHor)
+	
+	# Framerate-independent smoothing factor
+	var t := 1.0 - exp(-lagResponse * delta)
+	lagOffset = lagOffset.lerp(desiredOffset, t)
+	
+	# Safety clamp to prevent overshoot
+	if lagOffset.length() > maxLagDistance:
+		lagOffset = lagOffset.normalized() * maxLagDistance
+	
+	# Apply to pivot without touching rotation
+	cameraPivot.position = basePivotPos + Vector3(0, camHeight, 0) + lagOffset

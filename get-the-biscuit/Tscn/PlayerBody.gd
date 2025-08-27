@@ -75,7 +75,7 @@ func _physics_process(delta: float) -> void:
 # Camera lag
 @export var camHeight := 1.6
 @export var maxLagDistance := 1.2 # max trailing distance behind motion
-@export var lagResponse := 10.0 # higher = snappier
+@export var lagResponse := 2.0 # higher = snappier
 @export var lagAxisWeight := Vector3(1.0, 0.0, 1.0) # lag
 
 @export var maxVerticalLag := 0.5        # how far up/down the camera trails
@@ -97,6 +97,7 @@ var targetZoom := 4.0  # also the starting zoom
 
 @export_range(0.0, 1.0) var mouseSensitivity = 0.01
 @export var cameraDistance = 4.0
+@export var rotationSmoothSpeed := 20.0 # higher = snappier, lower = more floaty
 @export var verticalLimit = Vector2(-30, 70)  # min and max vertical angle in degrees
 
 var rotationY = 0.0  # vertical rotation
@@ -106,13 +107,9 @@ func _unhandled_input(event):
 		# Update rotation based on mouse movement
 		rotationY -= event.relative.x * mouseSensitivity
 		rotationX -= event.relative.y * mouseSensitivity
-
+		
 		# Clamp vertical rotation to avoid flipping upside down
 		rotationX = clamp(rotationX, deg_to_rad(verticalLimit.x), deg_to_rad(verticalLimit.y))
-
-		# Apply the rotations
-		cameraPivot.rotation.y = rotationY
-		tiltPivot.rotation.x = rotationX
 		
 		# zoom in/out logic
 	elif event is InputEventMouseButton:
@@ -131,7 +128,7 @@ func _process(delta):
 	var fullVelo := Vector3(velocity.x, 0, velocity.z)
 	var speed := fullVelo.length()
 	
-#    We invert Y so camera lags opposite player motion (rising = camera dips, falling = camera rises)
+	# We invert Y so camera lags opposite player motion (rising = camera dips, falling = camera rises)
 	var rawYoffset := -velocity.y * 0.1 # scale factor—you can tweak
 	var desiredY = clamp(rawYoffset, -maxVerticalLag, maxVerticalLag)
 	var desiredXZ := Vector3.ZERO
@@ -159,5 +156,13 @@ func _process(delta):
 	if lagOffset.length() > maxLagDistance:
 		lagOffset = lagOffset.normalized() * maxLagDistance
 	
+	# Smoothly interpolate Yaw Pivot toward target yaw (rotationY)
+	var smooth := 1.0 - exp(-rotationSmoothSpeed * delta)
+	
+	# Handles wrapping around ±PI correctly
+	cameraPivot.rotation.y = lerp_angle(cameraPivot.rotation.y, rotationY, smooth)
+	tiltPivot.rotation.x = lerp_angle(tiltPivot.rotation.x, rotationX, smooth)
+	
 	# Apply to pivot without touching rotation
 	cameraPivot.position = basePivotPos + Vector3(0, camHeight, 0) + lagOffset
+	

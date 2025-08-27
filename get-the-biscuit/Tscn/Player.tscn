@@ -16,6 +16,7 @@ mesh = SubResource("BoxMesh_dom61")
 shape = SubResource("BoxShape3D_8jke6")
 
 [node name="CamPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="SpringCamArm3D" type="SpringArm3D" parent="CamPivot"]
 spring_length = 5.0

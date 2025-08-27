@@ -50,9 +50,10 @@ var basePivotPos: Vector3
 var targetZoom := 4.0  # also the starting zoom
 
 # camera movement/pivot logic
-@onready var camera := $CamPivot/SpringCamArm3D/Camera3D as Camera3D
 @onready var cameraPivot := $CamPivot as Node3D
-@onready var cameraSpringArm := $CamPivot/SpringCamArm3D as SpringArm3D
+@onready var tiltPivot := $CamPivot/TiltPivot as Node3D
+@onready var cameraSpringArm := $CamPivot/TiltPivot/SpringCamArm3D as SpringArm3D
+@onready var camera := $CamPivot/TiltPivot/SpringCamArm3D/Camera3D as Camera3D
 
 @export_range(0.0, 1.0) var mouseSensitivity = 0.01
 @export var cameraDistance = 4.0
@@ -71,7 +72,7 @@ func _unhandled_input(event):
 
 		# Apply the rotations
 		cameraPivot.rotation.y = rotationY
-		camera.rotation.x = rotationX
+		tiltPivot.rotation.x = rotationX
 		
 		# zoom in/out logic
 	elif event is InputEventMouseButton:

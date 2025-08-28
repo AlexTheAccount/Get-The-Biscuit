@@ -2,11 +2,13 @@ extends CharacterBody3D
 
 @onready var HUD = $HUD
 
-const SPEED = 5.0
-const JUMP_VELOCITY = 10
+var SPEED = 5.0
+var baseSpeed
+var JUMP_VELOCITY = 10
+var baseJump
 
-@export var short_jump_gravity_mult := 2.0 # gravity multiplier when jump is released early
-@export var fall_gravity_mult := 2.5 # gravity multiplier on the fall-down
+@export var shortJumpGravityMultipler := 2.0 # gravity multiplier when jump is released early
+@export var fallGravityMultipler := 2.5 # gravity multiplier on the fall-down
 
 @export var coyoteTime := 0.1 # seconds after leaving ground you can still jump
 var coyoteTimer := 0.0
@@ -19,6 +21,16 @@ var inventory := {}
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+# Applying Upgrades to the Player
+func UpgradePlayer(id: String, newLevel: int):
+	var upgrade = UpgradeManager.upgrades[id]
+	match upgrade.statType:
+		"Speed":
+			SPEED = baseSpeed + upgrade.statIncrement * newLevel
+		"Jump Height":
+			JUMP_VELOCITY = baseJump + upgrade.statIncrement * newLevel
+	# add more cases as needed
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -51,11 +63,11 @@ func _physics_process(delta: float) -> void:
 	# Apply variable gravity
 	if velocity.y < 0:
 		# Player is falling: heavier gravity for snappy fall
-		velocity += gravity * fall_gravity_mult * delta
+		velocity += gravity * fallGravityMultipler * delta
 	
 	elif velocity.y > 0 and not Input.is_action_pressed("ui_accept"):
 		# Player released jump while ascending: cut jump short
-		velocity += gravity * short_jump_gravity_mult * delta
+		velocity += gravity * shortJumpGravityMultipler * delta
 	
 	else:
 		# Normal ascent (holding jump) or grounded

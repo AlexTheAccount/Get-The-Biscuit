@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bjst3v4cmfhrq"]
 
-[ext_resource type="PackedScene" uid="uid://dg183frdfdw47" path="res://Tscn/Player.tscn" id="1_j3gig"]
-[ext_resource type="PackedScene" uid="uid://bwtiheu2rafh7" path="res://Tscn/Pickup/Pickups/Biscuit.tscn" id="3_6sfyb"]
+[ext_resource type="PackedScene" uid="uid://dg183frdfdw47" path="res://Tscn/Player.tscn" id="1_aq3yd"]
+[ext_resource type="PackedScene" uid="uid://bwtiheu2rafh7" path="res://Tscn/Pickup/Pickups/Biscuit.tscn" id="2_igmr5"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_hma3d"]
 
@@ -18,7 +18,7 @@ mesh = SubResource("BoxMesh_hma3d")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("BoxShape3D_3noxb")
 
-[node name="Player" parent="." instance=ExtResource("1_j3gig")]
+[node name="Player" parent="." instance=ExtResource("1_aq3yd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.478022, 1.24273, 0.180929)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -42,8 +42,8 @@ mesh = SubResource("BoxMesh_hma3d")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D3/StaticBody3D"]
 shape = SubResource("BoxShape3D_3noxb")
 
-[node name="Biscuit" parent="." instance=ExtResource("3_6sfyb")]
+[node name="Biscuit" parent="." instance=ExtResource("2_igmr5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.84949, 1, -2.70474)
 
-[node name="Biscuit2" parent="." instance=ExtResource("3_6sfyb")]
+[node name="Biscuit2" parent="." instance=ExtResource("2_igmr5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.84949, 1, 2.08907)

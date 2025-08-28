@@ -10,7 +10,7 @@ var currency := 0
 
 func canPurchase(id: String) -> bool:
 	var upgrade = upgrades[id]
-	return upgrade and levels[id] < upgrade.max_level and currency >= upgrade.cost
+	return upgrade and levels[id] < upgrade.maxLevel and currency >= upgrade.cost
 
 func purchase(id: String) -> bool:
 	if not canPurchase(id):
@@ -18,6 +18,4 @@ func purchase(id: String) -> bool:
 	var upgrade = upgrades[id]
 	currency -= upgrade.cost
 	levels[id] += 1
-	emit_signal("upgradePurchased", id, levels[id])
-	emit_signal("currencyChanged", currency)
 	return true

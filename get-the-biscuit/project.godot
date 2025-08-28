@@ -15,6 +15,10 @@ run/main_scene="uid://cm6at32y0pl8t"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+UpgradeManager="*res://GD/Manager/UpgradeManager.gd"
+
 [global_group]
 
 Pickup="Item that the player can pick up"

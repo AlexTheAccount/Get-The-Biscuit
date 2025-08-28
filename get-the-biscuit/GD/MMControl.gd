@@ -2,14 +2,11 @@ extends Control
 
 var levelLoad = load("uid://bjst3v4cmfhrq")
 
-var playNode
-var settingsNode
-var quitNode
+@onready var playNode := $Play
+@onready var settingsNode := $Settings
+@onready var quitNode := $Quit
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	playNode = get_node("Play")
-	settingsNode = get_node("Settings")
-	quitNode = get_node("Quit")
 	pass # Replace with function body.
 
 

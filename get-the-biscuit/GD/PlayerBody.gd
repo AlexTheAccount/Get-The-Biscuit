@@ -19,8 +19,17 @@ var bufferTimer := 0.0
 # Inventory
 var inventory := {}
 
+# Pause
+var pauseLoad = load("uid://lc57evjjefum")
+var addedPause
+
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+func _input(event):
+	if event.is_action_pressed("Pause") && addedPause == null:
+		addedPause = pauseLoad.instantiate()
+		add_child(addedPause)
 
 # Applying Upgrades to the Player
 func UpgradePlayer(id: String, newLevel: int):
@@ -33,61 +42,62 @@ func UpgradePlayer(id: String, newLevel: int):
 	# add more cases as needed
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-	
-	# Handle jump.
-	# Update timers
-	if is_on_floor():
-		coyoteTimer = coyoteTime
-	else:
-		coyoteTimer = max(coyoteTimer - delta, 0)
-	
-	# Capture jump input into buffer
-	if Input.is_action_just_pressed("ui_accept"):
-		bufferTimer = jumpBufferTime
-	else:
-		bufferTimer = max(bufferTimer - delta, 0)
-	
-	# Perform jump if either on floor (or within coyote) and buffered
-	if bufferTimer > 0 && coyoteTimer > 0:
-		velocity.y = JUMP_VELOCITY
-		bufferTimer = 0
-		coyoteTimer = 0
-	
-	# Apply gravity
-	# Grab the base gravity vector
-	var gravity = get_gravity()
-	
-	# Apply variable gravity
-	if velocity.y < 0:
-		# Player is falling: heavier gravity for snappy fall
-		velocity += gravity * fallGravityMultipler * delta
-	
-	elif velocity.y > 0 and not Input.is_action_pressed("ui_accept"):
-		# Player released jump while ascending: cut jump short
-		velocity += gravity * shortJumpGravityMultipler * delta
-	
-	else:
-		# Normal ascent (holding jump) or grounded
-		velocity += gravity * delta
-	
-	# Camera-relative movement
-	var inputVec := Input.get_vector("Player Left", "Player Right", "Player Up", "Player Down")
-	var camYaw := cameraPivot.global_transform.basis.get_euler().y
-	var camBasis := Basis(Vector3.UP, camYaw)
-	
-	var moveDir := (camBasis * Vector3(inputVec.x, 0, inputVec.y)).normalized()
-	
-	if moveDir != Vector3.ZERO:
-		velocity.x = moveDir.x * SPEED
-		velocity.z = moveDir.z * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+	if GameManager.isPaused == false:
+		# Add the gravity.
+		if not is_on_floor():
+			velocity += get_gravity() * delta
+		
+		# Handle jump.
+		# Update timers
+		if is_on_floor():
+			coyoteTimer = coyoteTime
+		else:
+			coyoteTimer = max(coyoteTimer - delta, 0)
+		
+		# Capture jump input into buffer
+		if Input.is_action_just_pressed("ui_accept"):
+			bufferTimer = jumpBufferTime
+		else:
+			bufferTimer = max(bufferTimer - delta, 0)
+		
+		# Perform jump if either on floor (or within coyote) and buffered
+		if bufferTimer > 0 && coyoteTimer > 0:
+			velocity.y = JUMP_VELOCITY
+			bufferTimer = 0
+			coyoteTimer = 0
+		
+		# Apply gravity
+		# Grab the base gravity vector
+		var gravity = get_gravity()
+		
+		# Apply variable gravity
+		if velocity.y < 0:
+			# Player is falling: heavier gravity for snappy fall
+			velocity += gravity * fallGravityMultipler * delta
+		
+		elif velocity.y > 0 and not Input.is_action_pressed("ui_accept"):
+			# Player released jump while ascending: cut jump short
+			velocity += gravity * shortJumpGravityMultipler * delta
+		
+		else:
+			# Normal ascent (holding jump) or grounded
+			velocity += gravity * delta
+		
+		# Camera-relative movement
+		var inputVec := Input.get_vector("Player Left", "Player Right", "Player Up", "Player Down")
+		var camYaw := cameraPivot.global_transform.basis.get_euler().y
+		var camBasis := Basis(Vector3.UP, camYaw)
+		
+		var moveDir := (camBasis * Vector3(inputVec.x, 0, inputVec.y)).normalized()
+		
+		if moveDir != Vector3.ZERO:
+			velocity.x = moveDir.x * SPEED
+			velocity.z = moveDir.z * SPEED
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
+			velocity.z = move_toward(velocity.z, 0, SPEED)
 
-	move_and_slide()
+		move_and_slide()
 
 # Camera lag
 @export var camHeight := 1.6
@@ -120,66 +130,68 @@ var targetZoom := 4.0  # also the starting zoom
 var rotationY = 0.0  # vertical rotation
 var rotationX = 0.0  # horizontal rotation
 func _unhandled_input(event):
-	if event is InputEventMouseMotion:
-		# Update rotation based on mouse movement
-		rotationY -= event.relative.x * mouseSensitivity
-		rotationX -= event.relative.y * mouseSensitivity
-		
-		# Clamp vertical rotation to avoid flipping upside down
-		rotationX = clamp(rotationX, deg_to_rad(verticalLimit.x), deg_to_rad(verticalLimit.y))
-		
-		# zoom in/out logic
-	elif event is InputEventMouseButton:
-		if Input.is_action_pressed("Zoom In"):
-			targetZoom = max(minZoom, targetZoom - zoomSpeed)
-		elif Input.is_action_pressed("Zoom Out"):
-			targetZoom = min(maxZoom, targetZoom + zoomSpeed)
+	if GameManager.isPaused == false:
+		if event is InputEventMouseMotion:
+			# Update rotation based on mouse movement
+			rotationY -= event.relative.x * mouseSensitivity
+			rotationX -= event.relative.y * mouseSensitivity
+			
+			# Clamp vertical rotation to avoid flipping upside down
+			rotationX = clamp(rotationX, deg_to_rad(verticalLimit.x), deg_to_rad(verticalLimit.y))
+			
+			# zoom in/out logic
+		elif event is InputEventMouseButton:
+			if Input.is_action_pressed("Zoom In"):
+				targetZoom = max(minZoom, targetZoom - zoomSpeed)
+			elif Input.is_action_pressed("Zoom Out"):
+				targetZoom = min(maxZoom, targetZoom + zoomSpeed)
 		
 func _process(delta):
-	# Smoothly Applies Zoom
-	var currentZoom = cameraSpringArm.spring_length
-	var newZoom = lerp(currentZoom, targetZoom, 10 * delta)
-	cameraSpringArm.spring_length = newZoom
-	
-	# Camera lag based on player velocity
-	var fullVelo := Vector3(velocity.x, 0, velocity.z)
-	var speed := fullVelo.length()
-	
-	# We invert Y so camera lags opposite player motion (rising = camera dips, falling = camera rises)
-	var rawYoffset := -velocity.y * 0.1 # scale factor—you can tweak
-	var desiredY = clamp(rawYoffset, -maxVerticalLag, maxVerticalLag)
-	var desiredXZ := Vector3.ZERO
-	
-	var desiredOffset := Vector3(
-		desiredXZ.x,
-		desiredY,
-		desiredXZ.z
-	)
-	if speed > 0.05:
-		desiredOffset = -fullVelo.normalized() * maxLagDistance
-	
-	# Smooth separately on each axis
-	var smoothHor := 1.0 - exp(-lagResponse * delta)
-	var smoothVert := 1.0 - exp(-verticalLagResponse * delta)
-	lagOffset.x = lerp(lagOffset.x, desiredOffset.x, smoothHor)
-	lagOffset.y = lerp(lagOffset.y, desiredOffset.y, smoothVert)
-	lagOffset.z = lerp(lagOffset.z, desiredOffset.z, smoothHor)
-	
-	# Framerate-independent smoothing factor
-	var t := 1.0 - exp(-lagResponse * delta)
-	lagOffset = lagOffset.lerp(desiredOffset, t)
-	
-	# Safety clamp to prevent overshoot
-	if lagOffset.length() > maxLagDistance:
-		lagOffset = lagOffset.normalized() * maxLagDistance
-	
-	# Smoothly interpolate Yaw Pivot toward target yaw (rotationY)
-	var smooth := 1.0 - exp(-rotationSmoothSpeed * delta)
-	
-	# Handles wrapping around ±PI correctly
-	cameraPivot.rotation.y = lerp_angle(cameraPivot.rotation.y, rotationY, smooth)
-	tiltPivot.rotation.x = lerp_angle(tiltPivot.rotation.x, rotationX, smooth)
-	
-	# Apply to pivot without touching rotation
-	cameraPivot.position = basePivotPos + Vector3(0, camHeight, 0) + lagOffset
+	if GameManager.isPaused == false:
+		# Smoothly Applies Zoom
+		var currentZoom = cameraSpringArm.spring_length
+		var newZoom = lerp(currentZoom, targetZoom, 10 * delta)
+		cameraSpringArm.spring_length = newZoom
+		
+		# Camera lag based on player velocity
+		var fullVelo := Vector3(velocity.x, 0, velocity.z)
+		var speed := fullVelo.length()
+		
+		# We invert Y so camera lags opposite player motion (rising = camera dips, falling = camera rises)
+		var rawYoffset := -velocity.y * 0.1 # scale factor—you can tweak
+		var desiredY = clamp(rawYoffset, -maxVerticalLag, maxVerticalLag)
+		var desiredXZ := Vector3.ZERO
+		
+		var desiredOffset := Vector3(
+			desiredXZ.x,
+			desiredY,
+			desiredXZ.z
+		)
+		if speed > 0.05:
+			desiredOffset = -fullVelo.normalized() * maxLagDistance
+		
+		# Smooth separately on each axis
+		var smoothHor := 1.0 - exp(-lagResponse * delta)
+		var smoothVert := 1.0 - exp(-verticalLagResponse * delta)
+		lagOffset.x = lerp(lagOffset.x, desiredOffset.x, smoothHor)
+		lagOffset.y = lerp(lagOffset.y, desiredOffset.y, smoothVert)
+		lagOffset.z = lerp(lagOffset.z, desiredOffset.z, smoothHor)
+		
+		# Framerate-independent smoothing factor
+		var t := 1.0 - exp(-lagResponse * delta)
+		lagOffset = lagOffset.lerp(desiredOffset, t)
+		
+		# Safety clamp to prevent overshoot
+		if lagOffset.length() > maxLagDistance:
+			lagOffset = lagOffset.normalized() * maxLagDistance
+		
+		# Smoothly interpolate Yaw Pivot toward target yaw (rotationY)
+		var smooth := 1.0 - exp(-rotationSmoothSpeed * delta)
+		
+		# Handles wrapping around ±PI correctly
+		cameraPivot.rotation.y = lerp_angle(cameraPivot.rotation.y, rotationY, smooth)
+		tiltPivot.rotation.x = lerp_angle(tiltPivot.rotation.x, rotationX, smooth)
+		
+		# Apply to pivot without touching rotation
+		cameraPivot.position = basePivotPos + Vector3(0, camHeight, 0) + lagOffset
 	

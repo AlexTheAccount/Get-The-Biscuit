@@ -32,14 +32,15 @@ func _ready() -> void:
 	pass # Replace with function body.
 	
 func _process(delta: float) -> void:
-	# Countdown
-	timeLeft -= delta
-	
-	if timeLeft <= 0:
-		timeLeft = resetTimer
-		Reset()
-	
-	resetTimerNode.text = str(int(timeLeft))
+	if GameManager.isPaused == false:
+		# Countdown
+		timeLeft -= delta
+		
+		if timeLeft <= 0:
+			timeLeft = resetTimer
+			Reset()
+		
+		resetTimerNode.text = str(int(timeLeft))
 
 func Reset() -> void:
 	# Death check 

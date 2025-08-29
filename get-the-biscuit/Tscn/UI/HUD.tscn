@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c4lnn0cn26g05"]
 
-[ext_resource type="Script" uid="uid://cenwngsu46o5p" path="res://GD/Counter.gd" id="1_4wsjk"]
-[ext_resource type="Script" uid="uid://b7p3nts7p23al" path="res://GD/ScaleFont.gd" id="1_ncxwm"]
+[ext_resource type="Script" uid="uid://cenwngsu46o5p" path="res://GD/UI/Counter.gd" id="1_4wsjk"]
+[ext_resource type="Script" uid="uid://b7p3nts7p23al" path="res://GD/UI/ScaleFont.gd" id="1_ncxwm"]
 
 [node name="HUD" type="Control"]
 layout_mode = 3

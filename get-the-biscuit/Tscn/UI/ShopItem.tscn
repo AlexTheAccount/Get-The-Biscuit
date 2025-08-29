@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dssmejbg34723"]
 
-[ext_resource type="Script" uid="uid://bkscdtbna2isr" path="res://GD/ShopItem.gd" id="1_jysho"]
+[ext_resource type="Script" uid="uid://bkscdtbna2isr" path="res://GD/UI/ShopItem.gd" id="1_jysho"]
 
 [node name="ShopItem" type="Button"]
 anchors_preset = -1

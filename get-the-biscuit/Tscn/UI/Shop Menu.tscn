@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://vrwk3wmr4kgu"]
 
 [ext_resource type="PackedScene" uid="uid://dssmejbg34723" path="res://Tscn/UI/ShopItem.tscn" id="1_nph5g"]
-[ext_resource type="Script" uid="uid://dinj16m7hb73u" path="res://GD/ShopControl.gd" id="1_y3pl7"]
+[ext_resource type="Script" uid="uid://dinj16m7hb73u" path="res://GD/UI/ShopControl.gd" id="1_y3pl7"]
 
 [node name="Shop Menu" type="Control"]
 layout_mode = 3

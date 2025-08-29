@@ -1,0 +1,54 @@
+[gd_scene load_steps=2 format=3 uid="uid://086fvgtlcfpr"]
+
+[ext_resource type="Script" uid="uid://qm5dpr7qsfs" path="res://GD/UI/PauseControl.gd" id="1_iyook"]
+
+[node name="Death Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_iyook")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 0, 0, 0.113725)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 61
+text = "You Risked It"
+horizontal_alignment = 1
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -123.5
+offset_top = -48.0
+offset_right = 123.5
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Quit To Main Menu"
+
+[connection signal="button_up" from="Quit" to="." method="_on_quit_button_up"]

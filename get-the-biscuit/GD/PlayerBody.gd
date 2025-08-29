@@ -23,6 +23,10 @@ var inventory := {}
 var pauseLoad = load("uid://lc57evjjefum")
 var addedPause
 
+# Death
+var deathLoad = load("uid://086fvgtlcfpr")
+var addedDeath
+
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
@@ -147,6 +151,10 @@ func _unhandled_input(event):
 				targetZoom = min(maxZoom, targetZoom + zoomSpeed)
 		
 func _process(delta):
+	if position.y < -10 && addedDeath == null:
+		addedDeath = deathLoad.instantiate()
+		add_child(addedDeath)
+	
 	if GameManager.isPaused == false:
 		# Smoothly Applies Zoom
 		var currentZoom = cameraSpringArm.spring_length

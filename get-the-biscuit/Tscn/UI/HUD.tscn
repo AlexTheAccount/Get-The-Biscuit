@@ -13,12 +13,31 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="BiscuitLabel" type="Label" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.061
+anchor_bottom = 0.035
+offset_right = -30.272
+offset_bottom = 0.32
 text = "Biscuit: 0"
 script = ExtResource("1_4wsjk")
 trackedItem = "Biscuit"
 
 [node name="FontScaler" type="Node" parent="BiscuitLabel"]
+script = ExtResource("1_ncxwm")
+
+[node name="TimerLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -35.0
+offset_right = 35.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 61
+text = "60"
+horizontal_alignment = 1
+
+[node name="FontScaler" type="Node" parent="TimerLabel"]
 script = ExtResource("1_ncxwm")

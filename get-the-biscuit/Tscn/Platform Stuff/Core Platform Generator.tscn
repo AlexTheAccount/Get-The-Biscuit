@@ -14,11 +14,21 @@ script = ExtResource("1_0idhl")
 platformScenes = Array[PackedScene]([ExtResource("2_x4v74"), ExtResource("3_c4rut")])
 itemScene = ExtResource("3_gmaqc")
 
-[node name="Mesh3D" type="MeshInstance3D" parent="."]
+[node name="CentralMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(15, 0, 0, 0, 1, 0, 0, 0, 15, 0, 0, 0)
 mesh = SubResource("BoxMesh_hma3d")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Mesh3D"]
+[node name="StaticBody3D" type="StaticBody3D" parent="CentralMesh"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh3D/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CentralMesh/StaticBody3D"]
 shape = SubResource("BoxShape3D_3noxb")
+debug_color = Color(0, 0.643326, 0.302065, 0.42)
+
+[node name="SafeZone" type="Area3D" parent="CentralMesh"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CentralMesh/SafeZone"]
+shape = SubResource("BoxShape3D_3noxb")
+debug_color = Color(0, 0.643326, 0.302065, 0.42)
+
+[connection signal="body_entered" from="CentralMesh/SafeZone" to="." method="_on_safe_zone_body_entered"]
+[connection signal="body_exited" from="CentralMesh/SafeZone" to="." method="_on_safe_zone_body_exited"]

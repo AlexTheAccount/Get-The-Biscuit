@@ -1,0 +1,24 @@
+[gd_scene load_steps=7 format=3 uid="uid://n8vipxo3bbjy"]
+
+[ext_resource type="Script" uid="uid://cdndob82qd0r6" path="res://GD/PlatformGenerator.gd" id="1_0idhl"]
+[ext_resource type="PackedScene" uid="uid://dx5uhq3cvqova" path="res://Tscn/Platform Stuff/Platform Types/Basic Platform.tscn" id="2_x4v74"]
+[ext_resource type="PackedScene" uid="uid://cyvuerjo8et8b" path="res://Tscn/Platform Stuff/Platform Types/Quarters Platform.tscn" id="3_c4rut"]
+[ext_resource type="PackedScene" uid="uid://bwtiheu2rafh7" path="res://Tscn/Pickup/Pickups/Biscuit.tscn" id="3_gmaqc"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_hma3d"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3noxb"]
+
+[node name="Core Platform Generator" type="Node3D"]
+script = ExtResource("1_0idhl")
+platformScenes = Array[PackedScene]([ExtResource("2_x4v74"), ExtResource("3_c4rut")])
+itemScene = ExtResource("3_gmaqc")
+
+[node name="Mesh3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(15, 0, 0, 0, 1, 0, 0, 0, 15, 0, 0, 0)
+mesh = SubResource("BoxMesh_hma3d")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Mesh3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_3noxb")

@@ -1,49 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://bjst3v4cmfhrq"]
+[gd_scene load_steps=3 format=3 uid="uid://bjst3v4cmfhrq"]
 
 [ext_resource type="PackedScene" uid="uid://dg183frdfdw47" path="res://Tscn/Player.tscn" id="1_aq3yd"]
-[ext_resource type="PackedScene" uid="uid://bwtiheu2rafh7" path="res://Tscn/Pickup/Pickups/Biscuit.tscn" id="2_igmr5"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_hma3d"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_3noxb"]
+[ext_resource type="PackedScene" uid="uid://n8vipxo3bbjy" path="res://Tscn/Platform Stuff/Core Platform Generator.tscn" id="1_igmr5"]
 
 [node name="Level" type="Node3D"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(17.131, 0, 0, 0, 1, 0, 0, 0, 15.0206, 0, 0, 0)
-mesh = SubResource("BoxMesh_hma3d")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
-shape = SubResource("BoxShape3D_3noxb")
+[node name="Core Platform Generator" parent="." instance=ExtResource("1_igmr5")]
 
 [node name="Player" parent="." instance=ExtResource("1_aq3yd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.478022, 1.24273, 0.180929)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.978166, 0.207826, 0, -0.207826, 0.978166, 0, 0, 0)
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(2.38003, 0, 0, 0, 1, 0, 0, 0, 1.85193, 0, 0.884249, -1.79798)
-mesh = SubResource("BoxMesh_hma3d")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D"]
-shape = SubResource("BoxShape3D_3noxb")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
-transform = Transform3D(2.38003, 0, 0, 0, 1, 0, 0, 0, 1.85193, 0, 0.884249, 2.14397)
-mesh = SubResource("BoxMesh_hma3d")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D3"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D3/StaticBody3D"]
-shape = SubResource("BoxShape3D_3noxb")
-
-[node name="Biscuit" parent="." instance=ExtResource("2_igmr5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.84949, 1, -2.70474)
-
-[node name="Biscuit2" parent="." instance=ExtResource("2_igmr5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.84949, 1, 2.08907)

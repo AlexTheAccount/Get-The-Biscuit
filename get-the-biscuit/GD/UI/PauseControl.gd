@@ -1,6 +1,10 @@
 extends Control
 
-@onready var quitButton := $Quit
+@onready var continueNode := $Continue
+@onready var settingsNode := $Settings
+@onready var quitNode := $Quit
+
+var settingsLoad = load("uid://7plmkuylx88q")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -13,6 +17,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+func ToggleAll():
+	continueNode.visible = not continueNode.visible
+	settingsNode.visible = not settingsNode.visible
+	quitNode.visible = not quitNode.visible
 
 func _on_continue_button_up() -> void:
 	GameManager.isPaused = false
@@ -22,14 +30,17 @@ func _on_continue_button_up() -> void:
 
 
 func _on_settings_button_up() -> void:
+	ToggleAll()
+	var addedSettings = settingsLoad.instantiate()
+	add_child(addedSettings)
 	pass # Replace with function body.
 
 
 func _on_quit_button_up() -> void:
-	if quitButton.text == "Your Progress won't be saved":
+	if quitNode.text == "Your Progress won't be saved":
 		GameManager.isPaused = false
 		get_parent().get_parent().get_parent().ToggleAll()
 		get_parent().get_parent().queue_free()
 	
-	quitButton.text = "Your Progress won't be saved"
+	quitNode.text = "Your Progress won't be saved"
 	pass # Replace with function body.

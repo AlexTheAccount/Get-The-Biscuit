@@ -1,0 +1,68 @@
+[gd_scene load_steps=2 format=3 uid="uid://7plmkuylx88q"]
+
+[ext_resource type="Script" uid="uid://dn625ek8sfvsp" path="res://GD/UI/SettingsControl.gd" id="1_yne22"]
+
+[node name="Settings Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_yne22")
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -123.5
+offset_top = -48.0
+offset_right = 123.5
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Return"
+
+[node name="SFXSlider" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 319.0
+offset_right = 271.0
+offset_bottom = 335.0
+
+[node name="SFXLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 69.0
+offset_top = 276.0
+offset_right = 261.0
+offset_bottom = 317.0
+theme_override_font_sizes/font_size = 26
+text = "Sound Effects"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="MusicSlider" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 864.0
+offset_top = 319.0
+offset_right = 1080.0
+offset_bottom = 335.0
+
+[node name="MusicLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 878.0
+offset_top = 276.0
+offset_right = 1070.0
+offset_bottom = 317.0
+theme_override_font_sizes/font_size = 26
+text = "Music Effects"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[connection signal="button_up" from="Quit" to="." method="_on_quit_button_up"]
+[connection signal="value_changed" from="SFXSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="value_changed" from="MusicSlider" to="." method="_on_music_slider_value_changed"]

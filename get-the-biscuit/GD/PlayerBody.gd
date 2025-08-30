@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 @onready var HUD = $HUD
+@onready var shopMenu = $"Shop Menu"
 
 var SPEED = 5.0
 var baseSpeed
@@ -31,12 +32,13 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _input(event):
-	if event.is_action_pressed("Pause") && addedPause == null && GameManager.isPaused == false:
-		addedPause = pauseLoad.instantiate()
-		add_child(addedPause)
-	else:
-		if event.is_action_pressed("Pause") && addedPause != null:
-			addedPause._on_continue_button_up()
+	if shopMenu.visible == false:
+		if event.is_action_pressed("Pause") && addedPause == null && GameManager.isPaused == false:
+			addedPause = pauseLoad.instantiate()
+			add_child(addedPause)
+		else:
+			if event.is_action_pressed("Pause") && addedPause != null:
+				addedPause._on_continue_button_up()
 
 # Applying Upgrades to the Player
 func UpgradePlayer(id: String, newLevel: int):

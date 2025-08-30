@@ -1,6 +1,7 @@
 extends Control
 
 var levelLoad = load("uid://bjst3v4cmfhrq")
+var settingsLoad = load("uid://7plmkuylx88q")
 
 @onready var playNode := $Play
 @onready var settingsNode := $Settings
@@ -27,6 +28,9 @@ func _on_play_button_up() -> void:
 
 
 func _on_settings_button_up() -> void:
+	ToggleAll()
+	var addedSettings = settingsLoad.instantiate()
+	add_child(addedSettings)
 	pass # Replace with function body.
 
 

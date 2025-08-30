@@ -31,9 +31,12 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _input(event):
-	if event.is_action_pressed("Pause") && addedPause == null:
+	if event.is_action_pressed("Pause") && addedPause == null && GameManager.isPaused == false:
 		addedPause = pauseLoad.instantiate()
 		add_child(addedPause)
+	else:
+		if event.is_action_pressed("Pause") && addedPause != null:
+			addedPause._on_continue_button_up()
 
 # Applying Upgrades to the Player
 func UpgradePlayer(id: String, newLevel: int):
@@ -109,8 +112,8 @@ func _physics_process(delta: float) -> void:
 @export var lagResponse := 2.0 # higher = snappier
 @export var lagAxisWeight := Vector3(1.0, 0.0, 1.0) # lag
 
-@export var maxVerticalLag := 0.5        # how far up/down the camera trails
-@export var verticalLagResponse := 5.0   # smoothness on Y axis
+@export var maxVerticalLag := 0.5 # how far up/down the camera trails
+@export var verticalLagResponse := 5.0 # smoothness on Y axis
 var lagOffset := Vector3.ZERO
 var basePivotPos: Vector3
 
@@ -129,10 +132,10 @@ var targetZoom := 4.0  # also the starting zoom
 @export_range(0.0, 1.0) var mouseSensitivity = 0.01
 @export var cameraDistance = 4.0
 @export var rotationSmoothSpeed := 20.0 # higher = snappier, lower = more floaty
-@export var verticalLimit = Vector2(-30, 70)  # min and max vertical angle in degrees
+@export var verticalLimit = Vector2(-30, 70) # min and max vertical angle in degrees
 
-var rotationY = 0.0  # vertical rotation
-var rotationX = 0.0  # horizontal rotation
+var rotationY = 0.0 # vertical rotation
+var rotationX = 0.0 # horizontal rotation
 func _unhandled_input(event):
 	if GameManager.isPaused == false:
 		if event is InputEventMouseMotion:

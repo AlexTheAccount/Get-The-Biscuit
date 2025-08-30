@@ -25,6 +25,8 @@ shape = SubResource("BoxShape3D_3noxb")
 debug_color = Color(0, 0.643326, 0.302065, 0.42)
 
 [node name="SafeZone" type="Area3D" parent="CentralMesh"]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
+collision_layer = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CentralMesh/SafeZone"]
 shape = SubResource("BoxShape3D_3noxb")

@@ -11,7 +11,7 @@ extends Node3D
 var player
 
 # Reset Timer
-@export var resetTimer := 60.0
+@export var resetTimer := 3.0
 var resetTimerNode
 var timeLeft := 0.0
 
@@ -53,6 +53,9 @@ func Reset() -> void:
 	generate()
 	
 func generate():
+	if playerSafe == true:
+		player.get_node("Shop Menu").EnterShop()
+	
 	GameManager.stageCounter += 1
 	var directions = [
 		Vector3(1, 0, 0), Vector3(-1, 0, 0),

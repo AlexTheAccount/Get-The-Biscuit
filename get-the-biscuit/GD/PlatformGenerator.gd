@@ -43,10 +43,6 @@ func _process(delta: float) -> void:
 		resetTimerNode.text = str(int(timeLeft))
 
 func Reset() -> void:
-	# Death check 
-	#if playerSafe == false:
-		#player.queue_free()  # or call your custom die() method
-	
 	# Clear old platforms and items
 	for child in get_children():
 		if child.name != "CentralMesh":
@@ -56,6 +52,7 @@ func Reset() -> void:
 	generate()
 	
 func generate():
+	GameManager.stageCounter += 1
 	var directions = [
 		Vector3(1, 0, 0), Vector3(-1, 0, 0),
 		Vector3(0, 0, 1), Vector3(0, 0, -1),

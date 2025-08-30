@@ -28,7 +28,7 @@ func _ready() -> void:
 		player = players[0]
 		resetTimerNode = player.get_node("HUD").get_node("TimerLabel")
 	
-	Reset()
+	generate()
 	pass # Replace with function body.
 	
 func _process(delta: float) -> void:
@@ -47,7 +47,8 @@ func Reset() -> void:
 	for child in get_children():
 		if child.name != "CentralMesh":
 			child.queue_free()
-
+	
+	await get_tree().create_timer(0.5).timeout
 	# Generate new layout
 	generate()
 	

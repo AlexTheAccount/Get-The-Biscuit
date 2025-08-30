@@ -1,0 +1,48 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxlt183fyh4w8"]
+
+[ext_resource type="Script" uid="uid://cmkjcvwgmn551" path="res://GD/UI/ControlsControl.gd" id="1_yuimo"]
+
+[node name="Controls Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yuimo")
+
+[node name="TextEdit" type="TextEdit" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.372
+anchor_top = 0.335
+anchor_right = 0.631
+anchor_bottom = 0.653
+offset_left = -105.544
+offset_top = -36.08
+offset_right = 117.088
+offset_bottom = 3.85596
+grow_horizontal = 2
+grow_vertical = 2
+text = "P to pause
+WASD to move
+Spacebar to jump and hold it to jump higher
+"
+editable = false
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -123.5
+offset_top = -48.0
+offset_right = 123.5
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Return"
+
+[connection signal="button_up" from="Quit" to="." method="_on_quit_button_up"]

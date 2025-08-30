@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bjst3v4cmfhrq"]
+[gd_scene load_steps=4 format=3 uid="uid://bjst3v4cmfhrq"]
 
 [ext_resource type="PackedScene" uid="uid://dg183frdfdw47" path="res://Tscn/Player.tscn" id="1_aq3yd"]
 [ext_resource type="PackedScene" uid="uid://n8vipxo3bbjy" path="res://Tscn/Platform Stuff/Core Platform Generator.tscn" id="1_igmr5"]
+[ext_resource type="PackedScene" uid="uid://bxlt183fyh4w8" path="res://Tscn/UI/Controls Menu.tscn" id="3_igmr5"]
 
 [node name="Level" type="Node3D"]
 
@@ -12,3 +13,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.478022, 1.24273, 0.180929)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.978166, 0.207826, 0, -0.207826, 0.978166, 0, 0, 0)
+
+[node name="Controls Menu" parent="." instance=ExtResource("3_igmr5")]

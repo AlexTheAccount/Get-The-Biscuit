@@ -63,6 +63,25 @@ text = "Music Effects"
 horizontal_alignment = 1
 vertical_alignment = 2
 
+[node name="TextEdit" type="TextEdit" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.372
+anchor_top = 0.335
+anchor_right = 0.631
+anchor_bottom = 0.653
+offset_left = -105.544
+offset_top = -36.08
+offset_right = 117.088
+offset_bottom = 3.85596
+grow_horizontal = 2
+grow_vertical = 2
+text = "P to pause
+WASD to move
+Spacebar to jump and hold it to jump higher
+"
+editable = false
+
 [connection signal="button_up" from="Quit" to="." method="_on_quit_button_up"]
 [connection signal="value_changed" from="SFXSlider" to="." method="_on_sfx_slider_value_changed"]
 [connection signal="value_changed" from="MusicSlider" to="." method="_on_music_slider_value_changed"]

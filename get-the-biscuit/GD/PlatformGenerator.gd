@@ -11,7 +11,7 @@ extends Node3D
 var player
 
 # Reset Timer
-@export var resetTimer := 3.0
+@export var resetTimer := 10.0
 var resetTimerNode
 var timeLeft := 0.0
 
@@ -19,6 +19,7 @@ var timeLeft := 0.0
 @onready var safeZone := $Mesh3D/SafeZone as Area3D
 var playerSafe := false
 
+var material = load("res://Mat/PlatformMat.tres")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	timeLeft = resetTimer
@@ -34,15 +35,21 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if GameManager.isPaused == false:
 		# Countdown
-		timeLeft -= delta
+		if timeLeft == resetTimer:
+			material.albedo_color = Color.GREEN  # Set to green
+		if int(timeLeft) == int(resetTimer / 2):
+			material.albedo_color = Color.YELLOW  # Set to yellow
+		if int(timeLeft) == int(resetTimer / 4):
+			material.albedo_color = Color.RED  # Set to red
 		
+		timeLeft -= delta
 		if timeLeft <= 0:
 			timeLeft = resetTimer
 			Reset()
 		
 		resetTimerNode.text = str(int(timeLeft))
 
-func Reset() -> void:
+func Reset():
 	# Clear old platforms and items
 	for child in get_children():
 		if child.name != "CentralMesh":

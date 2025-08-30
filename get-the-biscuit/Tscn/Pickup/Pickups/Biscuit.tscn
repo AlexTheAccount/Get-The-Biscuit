@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://bwtiheu2rafh7"]
+[gd_scene load_steps=3 format=3 uid="uid://bwtiheu2rafh7"]
 
 [ext_resource type="PackedScene" uid="uid://cbqmloqvf745h" path="res://Tscn/Pickup/Pickup.tscn" id="1_mnfe8"]
+[ext_resource type="PackedScene" uid="uid://ouoh6l0ro6bh" path="res://FBX/Biscuit.fbx" id="2_qpabf"]
 
 [node name="Biscuit" instance=ExtResource("1_mnfe8")]
 itemId = "Biscuit"
+
+[node name="Biscuit" parent="." index="2" instance=ExtResource("2_qpabf")]
+transform = Transform3D(0.52, 0, 0, 0, 0.52, 0, 0, 0, 0.52, 0, 0, 0)

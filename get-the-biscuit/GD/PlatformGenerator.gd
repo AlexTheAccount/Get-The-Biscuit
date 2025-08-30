@@ -11,7 +11,7 @@ extends Node3D
 var player
 
 # Reset Timer
-@export var resetTimer := 10.0
+@export var resetTimer := 60.0
 var resetTimerNode
 var timeLeft := 0.0
 

@@ -1,9 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cyvuerjo8et8b"]
+[gd_scene load_steps=3 format=3 uid="uid://cyvuerjo8et8b"]
 
-[ext_resource type="Material" uid="uid://cd5ivv5j4pwmr" path="res://Mat/PlatformMat.tres" id="1_aj2aq"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_74mfi"]
-material = ExtResource("1_aj2aq")
+[ext_resource type="PackedScene" uid="uid://drhomcagggn51" path="res://Tscn/Platform Stuff/PlatformModel.tscn" id="1_aj2aq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_aj2aq"]
 
@@ -11,7 +8,6 @@ material = ExtResource("1_aj2aq")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, -3, 0, -3)
-mesh = SubResource("BoxMesh_74mfi")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2"]
 
@@ -20,7 +16,6 @@ shape = SubResource("BoxShape3D_aj2aq")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 3, 0, 3)
-mesh = SubResource("BoxMesh_74mfi")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D3"]
 
@@ -29,7 +24,6 @@ shape = SubResource("BoxShape3D_aj2aq")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, -3, 0, 3)
-mesh = SubResource("BoxMesh_74mfi")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D4"]
 
@@ -38,9 +32,20 @@ shape = SubResource("BoxShape3D_aj2aq")
 
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 2.98242, 0, -3.01758)
-mesh = SubResource("BoxMesh_74mfi")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D5"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D5/StaticBody3D"]
 shape = SubResource("BoxShape3D_aj2aq")
+
+[node name="PlatformModel" parent="." instance=ExtResource("1_aj2aq")]
+transform = Transform3D(0.765, 0, 0, 0, 1, 0, 0, 0, 0.765, 3, -0.58, 3)
+
+[node name="PlatformModel3" parent="." instance=ExtResource("1_aj2aq")]
+transform = Transform3D(0.765, 0, 0, 0, 1, 0, 0, 0, 0.765, 3, -0.58, -3)
+
+[node name="PlatformModel4" parent="." instance=ExtResource("1_aj2aq")]
+transform = Transform3D(0.765, 0, 0, 0, 1, 0, 0, 0, 0.765, -3, -0.58, 3)
+
+[node name="PlatformModel5" parent="." instance=ExtResource("1_aj2aq")]
+transform = Transform3D(0.765, 0, 0, 0, 1, 0, 0, 0, 0.765, -3, -0.58, -3)

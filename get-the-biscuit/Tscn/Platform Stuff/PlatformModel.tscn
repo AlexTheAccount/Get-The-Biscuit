@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://drhomcagggn51"]
+
+[ext_resource type="PackedScene" uid="uid://mtku0bwth428" path="res://FBX/Platform.fbx" id="1_02xry"]
+[ext_resource type="Material" uid="uid://cd5ivv5j4pwmr" path="res://Mat/PlatformMat.tres" id="2_xvd0h"]
+
+[node name="PlatformModel" instance=ExtResource("1_02xry")]
+
+[node name="Cube" parent="." index="0"]
+material_override = ExtResource("2_xvd0h")

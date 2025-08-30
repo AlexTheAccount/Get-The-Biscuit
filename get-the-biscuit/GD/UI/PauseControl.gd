@@ -4,6 +4,8 @@ extends Control
 @onready var settingsNode := $Settings
 @onready var quitNode := $Quit
 
+@export var pauseMenu := false
+
 var settingsLoad = load("uid://7plmkuylx88q")
 
 # Called when the node enters the scene tree for the first time.
@@ -37,7 +39,7 @@ func _on_settings_button_up() -> void:
 
 
 func _on_quit_button_up() -> void:
-	if quitNode.text == "Your Progress won't be saved":
+	if quitNode.text == "Your Progress won't be saved" || pauseMenu == false:
 		GameManager.isPaused = false
 		get_parent().get_parent().get_parent().ToggleAll()
 		get_parent().get_parent().queue_free()

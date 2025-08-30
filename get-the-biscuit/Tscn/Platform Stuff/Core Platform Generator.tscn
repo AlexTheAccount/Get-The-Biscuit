@@ -4,8 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dx5uhq3cvqova" path="res://Tscn/Platform Stuff/Platform Types/Basic Platform.tscn" id="2_x4v74"]
 [ext_resource type="PackedScene" uid="uid://cyvuerjo8et8b" path="res://Tscn/Platform Stuff/Platform Types/Quarters Platform.tscn" id="3_c4rut"]
 [ext_resource type="PackedScene" uid="uid://bwtiheu2rafh7" path="res://Tscn/Pickup/Pickups/Biscuit.tscn" id="3_gmaqc"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_hma3d"]
+[ext_resource type="PackedScene" uid="uid://b8f1tfbeomjdl" path="res://FBX/OvenTop.fbx" id="5_hbgcp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3noxb"]
 
@@ -16,7 +15,9 @@ itemScene = ExtResource("3_gmaqc")
 
 [node name="CentralMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(15, 0, 0, 0, 1, 0, 0, 0, 15, 0, 0, 0)
-mesh = SubResource("BoxMesh_hma3d")
+
+[node name="OvenTop" parent="CentralMesh" instance=ExtResource("5_hbgcp")]
+transform = Transform3D(0.197, 0, 0, 0, 2.94, 0, 0, 0, 0.197, 0, -4.20693, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="CentralMesh"]
 

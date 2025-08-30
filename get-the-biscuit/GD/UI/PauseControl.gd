@@ -1,5 +1,6 @@
 extends Control
 
+@onready var quitButton := $Quit
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -25,7 +26,10 @@ func _on_settings_button_up() -> void:
 
 
 func _on_quit_button_up() -> void:
-	GameManager.isPaused = false
-	get_parent().get_parent().get_parent().ToggleAll()
-	get_parent().get_parent().queue_free()
+	if quitButton.text == "Your Progress won't be saved":
+		GameManager.isPaused = false
+		get_parent().get_parent().get_parent().ToggleAll()
+		get_parent().get_parent().queue_free()
+	
+	quitButton.text = "Your Progress won't be saved"
 	pass # Replace with function body.

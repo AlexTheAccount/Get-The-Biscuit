@@ -22,6 +22,7 @@ func ToggleAll():
 
 func _on_play_button_up() -> void:
 	ToggleAll()
+	GameManager.stageCounter = 0
 	var addedLevel = levelLoad.instantiate()
 	add_child(addedLevel)
 	pass # Replace with function body.

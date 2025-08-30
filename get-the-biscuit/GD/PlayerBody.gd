@@ -28,6 +28,10 @@ var addedPause
 var deathLoad = load("uid://086fvgtlcfpr")
 var addedDeath
 
+# PlayerPivot
+@export var turnSpeed := 8.0
+@onready var playerPivot := $PlayerPivot as Node3D
+
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
@@ -105,8 +109,23 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.z = move_toward(velocity.z, 0, SPEED)
-
+		
 		move_and_slide()
+		
+		# Rotate Player Mesh
+		if moveDir.length() > 0.1:
+			# Calculate the desired angle from moveDir
+			var targetAngle = atan2(moveDir.x, moveDir.z)
+			
+			# Get the current mesh pivot angle
+			var currentAngle = playerPivot.rotation.y
+			
+			# Interpolate toward the target angle
+			var weight = clamp(turnSpeed * delta, 0, 1)
+			var newAngle = lerp_angle(currentAngle, targetAngle, weight)
+			
+			# Apply the smoothed rotation
+			playerPivot.rotation.y = newAngle
 
 # Camera lag
 @export var camHeight := 1.6
@@ -134,7 +153,7 @@ var targetZoom := 4.0  # also the starting zoom
 @export_range(0.0, 1.0) var mouseSensitivity = 0.01
 @export var cameraDistance = 4.0
 @export var rotationSmoothSpeed := 20.0 # higher = snappier, lower = more floaty
-@export var verticalLimit = Vector2(-30, 70) # min and max vertical angle in degrees
+@export var verticalLimit = Vector2(-70, 30) # min and max vertical angle in degrees
 
 var rotationY = 0.0 # vertical rotation
 var rotationX = 0.0 # horizontal rotation

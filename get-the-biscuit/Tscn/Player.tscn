@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://7ir7eoqrflxs" path="res://GD/PlayerBody.gd" id="1_8jke6"]
 [ext_resource type="PackedScene" uid="uid://c4lnn0cn26g05" path="res://Tscn/UI/HUD.tscn" id="2_txcnr"]
 [ext_resource type="PackedScene" uid="uid://vrwk3wmr4kgu" path="res://Tscn/UI/Shop Menu.tscn" id="3_kudba"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_dom61"]
+[ext_resource type="PackedScene" uid="uid://bdw06p438lqmm" path="res://FBX/Player.fbx" id="4_s726c"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8jke6"]
+size = Vector3(2, 1, 2)
 
 [node name="PlayerBody3D" type="CharacterBody3D" groups=["Player"]]
 script = ExtResource("1_8jke6")
@@ -15,9 +15,6 @@ script = ExtResource("1_8jke6")
 
 [node name="Shop Menu" parent="." instance=ExtResource("3_kudba")]
 visible = false
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_dom61")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_8jke6")
@@ -30,3 +27,11 @@ shape = SubResource("BoxShape3D_8jke6")
 spring_length = 5.0
 
 [node name="Camera3D" type="Camera3D" parent="CamPivot/TiltPivot/SpringCamArm3D"]
+
+[node name="PlayerPivot" type="Node3D" parent="."]
+
+[node name="PlayerMesh" type="MeshInstance3D" parent="PlayerPivot"]
+skeleton = NodePath("../..")
+
+[node name="Player" parent="PlayerPivot/PlayerMesh" instance=ExtResource("4_s726c")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)

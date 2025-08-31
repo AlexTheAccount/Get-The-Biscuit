@@ -4,9 +4,9 @@ extends CharacterBody3D
 @onready var shopMenu = $"Shop Menu"
 
 var SPEED = 5.0
-var baseSpeed
+var baseSpeed = SPEED
 var JUMP_VELOCITY = 10
-var baseJump
+var baseJump = JUMP_VELOCITY
 
 @export var shortJumpGravityMultipler := 2.0 # gravity multiplier when jump is released early
 @export var fallGravityMultipler := 2.5 # gravity multiplier on the fall-down
@@ -38,6 +38,7 @@ var addedDeath
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	GameManager.player = self
 
 func _input(event):
 	if shopMenu.visible == false:
@@ -51,13 +52,12 @@ func _input(event):
 				addedPause._on_continue_button_up()
 
 # Applying Upgrades to the Player
-func UpgradePlayer(id: String, newLevel: int):
-	var upgrade = UpgradeManager.upgrades[id]
-	match upgrade.statType:
-		"Speed":
-			SPEED = baseSpeed + upgrade.statIncrement * newLevel
-		"Jump Height":
-			JUMP_VELOCITY = baseJump + upgrade.statIncrement * newLevel
+func UpgradePlayer(name: String):
+	match name:
+		"Speed Boost":
+			SPEED = baseSpeed * 2
+		"Jump Boost":
+			JUMP_VELOCITY = baseJump * 2
 	# add more cases as needed
 
 func _physics_process(delta: float) -> void:

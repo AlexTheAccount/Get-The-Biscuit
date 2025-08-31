@@ -29,29 +29,19 @@ theme_override_constants/h_separation = 20
 theme_override_constants/v_separation = 30
 columns = 5
 
-[node name="ShopItem" parent="GridContainer" instance=ExtResource("1_nph5g")]
+[node name="SpeedBoost" parent="GridContainer" instance=ExtResource("1_nph5g")]
 custom_minimum_size = Vector2(215, 100)
 layout_mode = 2
+upgradeName = "Speed Boost"
+upgradeDesc = "Gives a boost to your speed"
+upgradeCost = 5
 
-[node name="ShopItem2" parent="GridContainer" instance=ExtResource("1_nph5g")]
+[node name="JumpBoost" parent="GridContainer" instance=ExtResource("1_nph5g")]
 custom_minimum_size = Vector2(215, 100)
 layout_mode = 2
-
-[node name="ShopItem3" parent="GridContainer" instance=ExtResource("1_nph5g")]
-custom_minimum_size = Vector2(215, 100)
-layout_mode = 2
-
-[node name="ShopItem4" parent="GridContainer" instance=ExtResource("1_nph5g")]
-custom_minimum_size = Vector2(215, 100)
-layout_mode = 2
-
-[node name="ShopItem5" parent="GridContainer" instance=ExtResource("1_nph5g")]
-custom_minimum_size = Vector2(215, 100)
-layout_mode = 2
-
-[node name="ShopItem6" parent="GridContainer" instance=ExtResource("1_nph5g")]
-custom_minimum_size = Vector2(215, 100)
-layout_mode = 2
+upgradeName = "Jump Boost"
+upgradeDesc = "Gives a boost to your jump height"
+upgradeCost = 5
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1

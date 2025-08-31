@@ -4,4 +4,5 @@ var isPaused := false
 var stageCounter := 0
 
 # Audio
-@onready var uiClickPlayer
+var uiClickPlayer
+var player

@@ -56,9 +56,9 @@ func _input(event):
 func UpgradePlayer(name: String):
 	match name:
 		"Speed Boost":
-			SPEED = baseSpeed * 2
+			SPEED = baseSpeed * 1.2
 		"Jump Boost":
-			JUMP_VELOCITY = baseJump * 2
+			JUMP_VELOCITY = baseJump * 1.2
 	# add more cases as needed
 
 func _physics_process(delta: float) -> void:

@@ -15,36 +15,46 @@ script = ExtResource("1_yne22")
 
 [node name="Quit" type="Button" parent="."]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -128.0
-offset_top = -48.0
-offset_right = 128.0
-offset_bottom = 2.0
+anchors_preset = -1
+anchor_left = 0.389
+anchor_top = 0.926
+anchor_right = 0.611
+anchor_bottom = 1.003
+offset_left = -0.128021
+offset_top = -0.0480347
+offset_right = 0.127991
+offset_bottom = 0.0559692
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("2_wpcg4")
 text = "Return"
 
 [node name="SFXSlider" type="HSlider" parent="."]
-layout_mode = 0
-offset_left = 64.0
-offset_top = 312.0
-offset_right = 320.0
-offset_bottom = 328.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.056
+anchor_top = 0.481
+anchor_right = 0.278
+anchor_bottom = 0.506
+offset_left = -0.512001
+offset_top = 0.311981
+offset_right = -0.256042
+offset_bottom = 0.111969
 theme = ExtResource("2_wpcg4")
 min_value = -72.0
 max_value = 6.0
 
 [node name="SFXLabel" type="Label" parent="."]
-layout_mode = 0
-offset_left = 64.0
-offset_top = 272.0
-offset_right = 320.0
-offset_bottom = 313.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.056
+anchor_top = 0.42
+anchor_right = 0.278
+anchor_bottom = 0.481
+offset_left = -0.512001
+offset_top = -0.160004
+offset_right = -0.256042
+offset_bottom = 1.31198
 theme = ExtResource("2_wpcg4")
 theme_override_font_sizes/font_size = 26
 text = "Sound Effects"
@@ -52,21 +62,31 @@ horizontal_alignment = 1
 vertical_alignment = 2
 
 [node name="MusicSlider" type="HSlider" parent="."]
-layout_mode = 0
-offset_left = 832.0
-offset_top = 312.0
-offset_right = 1088.0
-offset_bottom = 328.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.722
+anchor_top = 0.481
+anchor_right = 0.944
+anchor_bottom = 0.506
+offset_left = 0.25592
+offset_top = 0.311981
+offset_right = 0.511963
+offset_bottom = 0.111969
 theme = ExtResource("2_wpcg4")
 min_value = -72.0
 max_value = 6.0
 
 [node name="MusicLabel" type="Label" parent="."]
-layout_mode = 0
-offset_left = 832.0
-offset_top = 272.0
-offset_right = 1088.0
-offset_bottom = 313.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.722
+anchor_top = 0.42
+anchor_right = 0.944
+anchor_bottom = 0.483
+offset_left = 0.25592
+offset_top = -0.160004
+offset_right = 0.511963
+offset_bottom = 0.0159912
 theme = ExtResource("2_wpcg4")
 theme_override_font_sizes/font_size = 26
 text = "Music Effects"

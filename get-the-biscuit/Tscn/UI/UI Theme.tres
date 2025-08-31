@@ -26,6 +26,7 @@ bg_color = Color(0.454902, 0.380392, 0, 0.376471)
 
 [resource]
 Button/colors/font_color = Color(1, 1, 0.8, 1)
+Button/colors/font_disabled_color = Color(1, 1, 0.8, 1)
 Button/colors/font_hover_color = Color(0.53189, 0.415229, 0, 1)
 Button/styles/disabled = SubResource("StyleBoxFlat_mnerx")
 Button/styles/focus = SubResource("StyleBoxFlat_ugw5j")

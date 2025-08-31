@@ -44,14 +44,14 @@ editable = false
 
 [node name="Quit" type="Button" parent="."]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
+anchors_preset = -1
+anchor_left = 0.389
+anchor_top = 0.926
+anchor_right = 0.611
 anchor_bottom = 1.0
-offset_left = -128.0
-offset_top = -48.0
-offset_right = 128.0
+offset_left = -0.128021
+offset_top = -0.0480347
+offset_right = 0.127991
 offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 0

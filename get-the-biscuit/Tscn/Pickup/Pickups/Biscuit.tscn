@@ -1,10 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://bwtiheu2rafh7"]
+[gd_scene load_steps=5 format=3 uid="uid://bwtiheu2rafh7"]
 
 [ext_resource type="PackedScene" uid="uid://cbqmloqvf745h" path="res://Tscn/Pickup/Pickup.tscn" id="1_mnfe8"]
 [ext_resource type="PackedScene" uid="uid://ouoh6l0ro6bh" path="res://FBX/Biscuit.fbx" id="2_qpabf"]
+[ext_resource type="AudioStream" uid="uid://w5rryqa3h4dl" path="res://MP3/BISCUIT.mp3" id="3_4td3e"]
+[ext_resource type="AudioStream" uid="uid://nphc13w0f0ko" path="res://MP3/Pickup.mp3" id="4_bqk7f"]
 
 [node name="Biscuit" instance=ExtResource("1_mnfe8")]
 itemId = "Biscuit"
 
 [node name="Biscuit" parent="." index="2" instance=ExtResource("2_qpabf")]
 transform = Transform3D(0.52, 0, 0, 0, 0.52, 0, 0, 0, 0.52, 0, 0, 0)
+
+[node name="BiscuitPlayer" type="AudioStreamPlayer" parent="." index="3"]
+stream = ExtResource("3_4td3e")
+bus = &"SFX"
+
+[node name="PickupPlayer" type="AudioStreamPlayer" parent="." index="4"]
+stream = ExtResource("4_bqk7f")
+volume_db = -30.0
+bus = &"SFX"

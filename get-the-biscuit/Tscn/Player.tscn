@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dg183frdfdw47"]
+[gd_scene load_steps=8 format=3 uid="uid://dg183frdfdw47"]
 
 [ext_resource type="Script" uid="uid://7ir7eoqrflxs" path="res://GD/PlayerBody.gd" id="1_8jke6"]
 [ext_resource type="PackedScene" uid="uid://c4lnn0cn26g05" path="res://Tscn/UI/HUD.tscn" id="2_txcnr"]
 [ext_resource type="PackedScene" uid="uid://vrwk3wmr4kgu" path="res://Tscn/UI/Shop Menu.tscn" id="3_kudba"]
 [ext_resource type="PackedScene" uid="uid://bdw06p438lqmm" path="res://FBX/Player.fbx" id="4_s726c"]
+[ext_resource type="AudioStream" uid="uid://cpo0l733rj3xx" path="res://MP3/Movement.mp3" id="5_16y23"]
+[ext_resource type="AudioStream" uid="uid://3ppkdpjl4lcs" path="res://MP3/Jump.mp3" id="6_e5l2i"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8jke6"]
 size = Vector3(2, 1, 2)
@@ -35,3 +37,11 @@ skeleton = NodePath("../..")
 
 [node name="Player" parent="PlayerPivot/PlayerMesh" instance=ExtResource("4_s726c")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="MovementPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_16y23")
+bus = &"SFX"
+
+[node name="JumpPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_e5l2i")
+bus = &"SFX"

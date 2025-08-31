@@ -42,3 +42,5 @@ offset_right = -101.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Cost: "
+
+[connection signal="button_up" from="." to="." method="_on_button_up"]

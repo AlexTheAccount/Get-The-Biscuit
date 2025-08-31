@@ -13,15 +13,19 @@ func _process(delta: float) -> void:
 
 func _on_quit_button_up() -> void:
 	get_parent().ToggleAll()
+	GameManager.uiClickPlayer.play()
+	await get_tree().create_timer(GameManager.uiClickPlayer.stream.get_length()).timeout
 	queue_free()
 	pass # Replace with function body.
 
 
 func _on_sfx_slider_value_changed(value: float) -> void:
 	GameManager.sfxVolume = value
+	GameManager.uiClickPlayer.play()
 	pass # Replace with function body.
 
 
 func _on_music_slider_value_changed(value: float) -> void:
 	GameManager.musicVolume = value
+	GameManager.uiClickPlayer.play()
 	pass # Replace with function body.

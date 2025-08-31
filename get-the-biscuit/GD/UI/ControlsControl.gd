@@ -15,6 +15,8 @@ func _process(delta: float) -> void:
 
 func _on_quit_button_up() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	GameManager.uiClickPlayer.play()
+	await get_tree().create_timer(GameManager.uiClickPlayer.stream.get_length()).timeout
 	GameManager.isPaused = false
 	queue_free()
 	pass # Replace with function body.

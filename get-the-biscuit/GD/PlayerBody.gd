@@ -32,12 +32,18 @@ var addedDeath
 @export var turnSpeed := 8.0
 @onready var playerPivot := $PlayerPivot as Node3D
 
+# Audio
+@onready var movementPlayer := $MovementPlayer as AudioStreamPlayer
+@onready var jumpPlayer := $JumpPlayer as AudioStreamPlayer
+
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _input(event):
 	if shopMenu.visible == false:
 		if event.is_action_pressed("Pause") && addedPause == null && GameManager.isPaused == false:
+			GameManager.uiClickPlayer.play()
+			await get_tree().create_timer(GameManager.uiClickPlayer.stream.get_length()).timeout
 			addedPause = pauseLoad.instantiate()
 			add_child(addedPause)
 		else:
@@ -126,6 +132,15 @@ func _physics_process(delta: float) -> void:
 			
 			# Apply the smoothed rotation
 			playerPivot.rotation.y = newAngle
+			
+		# audio checks
+		if Vector3(velocity.x, 0, velocity.z).length() > 0.1 && is_on_floor() == true && movementPlayer.is_playing() == false:
+			movementPlayer.play()
+		elif Vector3(velocity.x, 0, velocity.z).length() <= 0.1 || is_on_floor() == false:
+			movementPlayer.stop()
+		
+		if velocity.y > 0 && jumpPlayer.is_playing() == false && Input.is_action_just_pressed("ui_accept"):
+			jumpPlayer.play()
 
 # Camera lag
 @export var camHeight := 1.6

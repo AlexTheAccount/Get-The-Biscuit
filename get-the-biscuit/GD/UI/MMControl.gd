@@ -8,6 +8,7 @@ var settingsLoad = load("uid://7plmkuylx88q")
 @onready var quitNode := $Quit
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	GameManager.uiClickPlayer = $UIClickPlayer
 	pass # Replace with function body.
 
 
@@ -22,6 +23,8 @@ func ToggleAll():
 
 func _on_play_button_up() -> void:
 	ToggleAll()
+	GameManager.uiClickPlayer.play()
+	await get_tree().create_timer(GameManager.uiClickPlayer.stream.get_length()).timeout
 	GameManager.stageCounter = 0
 	var addedLevel = levelLoad.instantiate()
 	add_child(addedLevel)
@@ -30,11 +33,15 @@ func _on_play_button_up() -> void:
 
 func _on_settings_button_up() -> void:
 	ToggleAll()
+	GameManager.uiClickPlayer.play()
+	await get_tree().create_timer(GameManager.uiClickPlayer.stream.get_length()).timeout
 	var addedSettings = settingsLoad.instantiate()
 	add_child(addedSettings)
 	pass # Replace with function body.
 
 
 func _on_quit_button_up() -> void:
+	GameManager.uiClickPlayer.play()
+	await get_tree().create_timer(GameManager.uiClickPlayer.stream.get_length()).timeout
 	get_tree().quit()
 	pass # Replace with function body.

@@ -78,7 +78,9 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "P to pause
 WASD to move
+Use the scroll wheel to zoom in and out
 Spacebar to jump and hold it to jump higher
+
 "
 editable = false
 

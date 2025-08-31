@@ -19,3 +19,9 @@ func UpdateUpgrade(currencyAmount):
 		var level = UpgradeManager.levels[upgradeId]
 		disabled = not UpgradeManager.can_purchase(upgradeId)
 		costLabel.text = str(upgrade.cost)
+
+
+func _on_button_up() -> void:
+	GameManager.uiClickPlayer.play()
+	await get_tree().create_timer(GameManager.uiClickPlayer.stream.get_length()).timeout
+	pass # Replace with function body.

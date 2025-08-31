@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cm6at32y0pl8t"]
+[gd_scene load_steps=3 format=3 uid="uid://cm6at32y0pl8t"]
 
 [ext_resource type="Script" uid="uid://dqvwvtgtgckcu" path="res://GD/UI/MMControl.gd" id="1_vuv5a"]
+[ext_resource type="AudioStream" uid="uid://b7eb3v4pjj7ny" path="res://MP3/UI Click.mp3" id="2_51q10"]
 
 [node name="Main Menu" type="Control"]
 layout_mode = 3
@@ -56,6 +57,10 @@ offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Quit"
+
+[node name="UIClickPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_51q10")
+bus = &"SFX"
 
 [connection signal="button_up" from="Play" to="." method="_on_play_button_up"]
 [connection signal="button_up" from="Settings" to="." method="_on_settings_button_up"]

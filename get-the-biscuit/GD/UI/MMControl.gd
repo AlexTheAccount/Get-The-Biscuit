@@ -6,6 +6,7 @@ var creditsLoad = load("uid://cu4jhaanlju30")
 var mmBackground = load("uid://cvye3flbatt88")
 @onready var addedMMBackground = $MMBackground
 
+@onready var titleNode := $Title
 @onready var playNode := $Play
 @onready var settingsNode := $Settings
 @onready var creditsNode := $Credits
@@ -24,11 +25,12 @@ func _process(delta: float) -> void:
 	pass
 
 func ToggleAll():
+	titleNode.visible = not titleNode.visible
 	playNode.visible = not playNode.visible
 	settingsNode.visible = not settingsNode.visible
 	creditsNode.visible = not creditsNode.visible
 	if addedMMBackground == null:
-		var addedMMBackground = mmBackground.instantiate()
+		addedMMBackground = mmBackground.instantiate()
 		add_child(addedMMBackground)
 
 func _on_play_button_up() -> void:

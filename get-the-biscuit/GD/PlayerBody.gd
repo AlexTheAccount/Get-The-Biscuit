@@ -7,6 +7,7 @@ var SPEED = 5.0
 var baseSpeed = SPEED
 var JUMP_VELOCITY = 10
 var baseJump = JUMP_VELOCITY
+var jumped := false
 
 @export var shortJumpGravityMultipler := 2.0 # gravity multiplier when jump is released early
 @export var fallGravityMultipler := 2.5 # gravity multiplier on the fall-down
@@ -70,6 +71,7 @@ func _physics_process(delta: float) -> void:
 		# Update timers
 		if is_on_floor():
 			coyoteTimer = coyoteTime
+			jumped = false
 		else:
 			coyoteTimer = max(coyoteTimer - delta, 0)
 		
@@ -139,8 +141,9 @@ func _physics_process(delta: float) -> void:
 		elif Vector3(velocity.x, 0, velocity.z).length() <= 0.1 || is_on_floor() == false:
 			movementPlayer.stop()
 		
-		if velocity.y > 0 && jumpPlayer.is_playing() == false && Input.is_action_just_pressed("ui_accept"):
+		if velocity.y > 0 && jumpPlayer.is_playing() == false && Input.is_action_just_pressed("ui_accept") && jumped == false:
 			jumpPlayer.play()
+			jumped = true
 
 # Camera lag
 @export var camHeight := 1.6

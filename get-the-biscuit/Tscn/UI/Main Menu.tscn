@@ -65,6 +65,7 @@ bus = &"SFX"
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_kdnj4")
+volume_db = -10.0
 bus = &"Music"
 
 [connection signal="button_up" from="Play" to="." method="_on_play_button_up"]

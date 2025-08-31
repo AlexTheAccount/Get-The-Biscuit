@@ -20,12 +20,12 @@ func _on_quit_button_up() -> void:
 
 
 func _on_sfx_slider_value_changed(value: float) -> void:
-	GameManager.sfxVolume = value
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), value)
 	GameManager.uiClickPlayer.play()
 	pass # Replace with function body.
 
 
 func _on_music_slider_value_changed(value: float) -> void:
-	GameManager.musicVolume = value
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), value)
 	GameManager.uiClickPlayer.play()
 	pass # Replace with function body.

@@ -43,7 +43,7 @@ func _on_settings_button_up() -> void:
 
 
 func _on_quit_button_up() -> void:
-	if quitNode.text == "Your Progress won't be saved" && pauseMenu == false:
+	if quitNode.text == "Your Progress won't be saved" || pauseMenu == false:
 		GameManager.uiClickPlayer.play()
 		await get_tree().create_timer(GameManager.uiClickPlayer.stream.get_length()).timeout
 		GameManager.isPaused = false
@@ -53,5 +53,4 @@ func _on_quit_button_up() -> void:
 		quitNode.text = "Your Progress won't be saved"
 		GameManager.uiClickPlayer.play()
 		await get_tree().create_timer(GameManager.uiClickPlayer.stream.get_length()).timeout
-		pauseMenu = false
 	pass # Replace with function body.

@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://cu4jhaanlju30"]
 
-[ext_resource type="Script" uid="uid://dqvwvtgtgckcu" path="res://GD/UI/MMControl.gd" id="1_myumj"]
+[ext_resource type="Script" uid="uid://dn625ek8sfvsp" path="res://GD/UI/SettingsControl.gd" id="1_myumj"]
 
-[node name="Main Menu" type="Control"]
+[node name="Credits Menu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

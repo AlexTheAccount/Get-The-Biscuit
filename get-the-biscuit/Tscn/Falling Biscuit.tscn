@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://2wjckococ0tw"]
+
+[ext_resource type="Script" uid="uid://0wbbu6vgvq7i" path="res://GD/FallingBiscuit.gd" id="1_0otnu"]
+[ext_resource type="PackedScene" uid="uid://bwtiheu2rafh7" path="res://Tscn/Pickup/Pickups/Biscuit.tscn" id="1_l7ibp"]
+
+[node name="FallingBiscuit" type="RigidBody3D"]
+script = ExtResource("1_0otnu")
+
+[node name="Biscuit" parent="." instance=ExtResource("1_l7ibp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.356541, 0, 0.057439)

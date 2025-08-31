@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cm6at32y0pl8t"]
+[gd_scene load_steps=5 format=3 uid="uid://cm6at32y0pl8t"]
 
 [ext_resource type="Script" uid="uid://dqvwvtgtgckcu" path="res://GD/UI/MMControl.gd" id="1_vuv5a"]
 [ext_resource type="AudioStream" uid="uid://b7eb3v4pjj7ny" path="res://MP3/UI Click.mp3" id="2_51q10"]
 [ext_resource type="AudioStream" uid="uid://dogn1v3mj8fr2" path="res://MP3/Get The Biscuits!.mp3" id="3_kdnj4"]
+[ext_resource type="PackedScene" uid="uid://cvye3flbatt88" path="res://Tscn/MMBackground.tscn" id="4_mnerx"]
 
 [node name="Main Menu" type="Control"]
 layout_mode = 3
@@ -67,6 +68,8 @@ bus = &"SFX"
 stream = ExtResource("3_kdnj4")
 volume_db = -10.0
 bus = &"Music"
+
+[node name="MMBackground" parent="." instance=ExtResource("4_mnerx")]
 
 [connection signal="button_up" from="Play" to="." method="_on_play_button_up"]
 [connection signal="button_up" from="Settings" to="." method="_on_settings_button_up"]

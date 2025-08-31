@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://vrwk3wmr4kgu"]
+[gd_scene load_steps=4 format=3 uid="uid://vrwk3wmr4kgu"]
 
 [ext_resource type="PackedScene" uid="uid://dssmejbg34723" path="res://Tscn/UI/ShopItem.tscn" id="1_nph5g"]
 [ext_resource type="Script" uid="uid://dinj16m7hb73u" path="res://GD/UI/ShopControl.gd" id="1_y3pl7"]
+[ext_resource type="Theme" uid="uid://dw0wgh7wqn2js" path="res://Tscn/UI/UI Theme.tres" id="3_0lser"]
 
 [node name="Shop Menu" type="Control"]
 layout_mode = 3
@@ -32,6 +33,7 @@ columns = 5
 [node name="SpeedBoost" parent="GridContainer" instance=ExtResource("1_nph5g")]
 custom_minimum_size = Vector2(215, 100)
 layout_mode = 2
+theme = ExtResource("3_0lser")
 upgradeName = "Speed Boost"
 upgradeDesc = "Gives a boost to your speed"
 upgradeCost = 5
@@ -39,6 +41,7 @@ upgradeCost = 5
 [node name="JumpBoost" parent="GridContainer" instance=ExtResource("1_nph5g")]
 custom_minimum_size = Vector2(215, 100)
 layout_mode = 2
+theme = ExtResource("3_0lser")
 upgradeName = "Jump Boost"
 upgradeDesc = "Gives a boost to your jump height"
 upgradeCost = 5
@@ -50,6 +53,7 @@ anchor_right = 1.0
 anchor_bottom = 0.225
 offset_bottom = -122.8
 grow_horizontal = 2
+theme = ExtResource("3_0lser")
 theme_override_font_sizes/font_size = 106
 text = "Shop"
 horizontal_alignment = 1
@@ -63,6 +67,7 @@ anchor_bottom = 1.0
 offset_top = 0.0959473
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("3_0lser")
 theme_override_font_sizes/font_size = 45
 text = "Exit Shop"
 

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bxlt183fyh4w8"]
+[gd_scene load_steps=3 format=3 uid="uid://bxlt183fyh4w8"]
 
 [ext_resource type="Script" uid="uid://cmkjcvwgmn551" path="res://GD/UI/ControlsControl.gd" id="1_yuimo"]
+[ext_resource type="Theme" uid="uid://dw0wgh7wqn2js" path="res://Tscn/UI/UI Theme.tres" id="2_318qh"]
 
 [node name="Controls Menu" type="Control"]
 layout_mode = 3
@@ -22,6 +23,7 @@ offset_right = 1.25592
 offset_bottom = -0.0160065
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_318qh")
 text = "P to pause
 WASD to move
 Use the scroll wheel to zoom in and out
@@ -43,6 +45,7 @@ offset_right = 127.0
 offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("2_318qh")
 text = "Return"
 
 [connection signal="button_up" from="Quit" to="." method="_on_quit_button_up"]

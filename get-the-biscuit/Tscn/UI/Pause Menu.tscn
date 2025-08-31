@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://lc57evjjefum"]
+[gd_scene load_steps=3 format=3 uid="uid://lc57evjjefum"]
 
 [ext_resource type="Script" uid="uid://qm5dpr7qsfs" path="res://GD/UI/PauseControl.gd" id="1_wrua7"]
+[ext_resource type="Theme" uid="uid://dw0wgh7wqn2js" path="res://Tscn/UI/UI Theme.tres" id="2_ee7j4"]
 
 [node name="Pause Menu" type="Control"]
 layout_mode = 3
@@ -26,6 +27,7 @@ offset_right = 128.0
 offset_bottom = -198.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("2_ee7j4")
 text = "Continue"
 
 [node name="Settings" type="Button" parent="."]
@@ -41,6 +43,7 @@ offset_right = 128.0
 offset_bottom = -94.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("2_ee7j4")
 text = "Settings"
 
 [node name="Quit" type="Button" parent="."]
@@ -56,6 +59,7 @@ offset_right = 128.0
 offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("2_ee7j4")
 text = "Quit To Main Menu"
 
 [connection signal="button_up" from="Continue" to="." method="_on_continue_button_up"]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cu4jhaanlju30"]
+[gd_scene load_steps=3 format=3 uid="uid://cu4jhaanlju30"]
 
 [ext_resource type="Script" uid="uid://dn625ek8sfvsp" path="res://GD/UI/SettingsControl.gd" id="1_myumj"]
+[ext_resource type="Theme" uid="uid://dw0wgh7wqn2js" path="res://Tscn/UI/UI Theme.tres" id="2_g26tm"]
 
 [node name="Credits Menu" type="Control"]
 layout_mode = 3
@@ -23,6 +24,7 @@ offset_right = -0.128052
 offset_bottom = 0.231964
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_g26tm")
 text = "Made in Godot
 
 Music made in LMMS
@@ -53,6 +55,7 @@ offset_right = 128.0
 offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("2_g26tm")
 text = "Return"
 
 [connection signal="button_up" from="Quit" to="." method="_on_quit_button_up"]

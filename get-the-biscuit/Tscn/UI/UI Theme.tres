@@ -1,0 +1,41 @@
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://dw0wgh7wqn2js"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mnerx"]
+bg_color = Color(0.187307, 0.112111, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ugw5j"]
+bg_color = Color(0.748449, 0.546871, 1.00112e-05, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lk5wc"]
+bg_color = Color(1, 0.875252, 0.545423, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m6k5y"]
+bg_color = Color(0.73986, 0.584405, 1.15514e-06, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sh6cl"]
+bg_color = Color(0.728253, 0.531742, 9.43363e-06, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sfway"]
+bg_color = Color(0.730088, 0.581069, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ctmp5"]
+bg_color = Color(1, 0.763527, 0.216572, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eayrf"]
+bg_color = Color(0.454902, 0.380392, 0, 0.376471)
+
+[resource]
+Button/colors/font_color = Color(1, 1, 0.8, 1)
+Button/colors/font_hover_color = Color(0.53189, 0.415229, 0, 1)
+Button/styles/disabled = SubResource("StyleBoxFlat_mnerx")
+Button/styles/focus = SubResource("StyleBoxFlat_ugw5j")
+Button/styles/hover = SubResource("StyleBoxFlat_lk5wc")
+Button/styles/normal = SubResource("StyleBoxFlat_m6k5y")
+Button/styles/pressed = SubResource("StyleBoxFlat_sh6cl")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_sfway")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_ctmp5")
+Label/colors/font_color = Color(1, 1, 0.8, 1)
+Label/styles/normal = null
+TextEdit/colors/font_color = Color(1, 1, 0.8, 1)
+TextEdit/colors/font_readonly_color = Color(1, 1, 0.8, 1)
+TextEdit/styles/read_only = SubResource("StyleBoxFlat_eayrf")

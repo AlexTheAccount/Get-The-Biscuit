@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cm6at32y0pl8t"]
+[gd_scene load_steps=6 format=3 uid="uid://cm6at32y0pl8t"]
 
 [ext_resource type="Script" uid="uid://dqvwvtgtgckcu" path="res://GD/UI/MMControl.gd" id="1_vuv5a"]
 [ext_resource type="AudioStream" uid="uid://b7eb3v4pjj7ny" path="res://MP3/UI Click.mp3" id="2_51q10"]
+[ext_resource type="Theme" uid="uid://dw0wgh7wqn2js" path="res://Tscn/UI/UI Theme.tres" id="2_ugw5j"]
 [ext_resource type="AudioStream" uid="uid://dogn1v3mj8fr2" path="res://MP3/Get The Biscuits!.mp3" id="3_kdnj4"]
 [ext_resource type="PackedScene" uid="uid://cvye3flbatt88" path="res://Tscn/MMBackground.tscn" id="4_mnerx"]
 
@@ -22,6 +23,7 @@ anchor_right = 1.0
 anchor_bottom = 0.319
 offset_bottom = -183.712
 grow_horizontal = 2
+theme = ExtResource("2_ugw5j")
 theme_override_font_sizes/font_size = 75
 text = "Get The Biscuit"
 horizontal_alignment = 1
@@ -39,6 +41,7 @@ offset_right = 128.0
 offset_bottom = -198.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("2_ugw5j")
 text = "Play"
 
 [node name="Settings" type="Button" parent="."]
@@ -54,6 +57,7 @@ offset_right = 128.0
 offset_bottom = -98.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("2_ugw5j")
 text = "Settings"
 
 [node name="Credits" type="Button" parent="."]
@@ -69,6 +73,7 @@ offset_right = 128.0
 offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("2_ugw5j")
 text = "Credits"
 
 [node name="UIClickPlayer" type="AudioStreamPlayer" parent="."]

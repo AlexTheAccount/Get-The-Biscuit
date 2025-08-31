@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://7plmkuylx88q"]
+[gd_scene load_steps=3 format=3 uid="uid://7plmkuylx88q"]
 
 [ext_resource type="Script" uid="uid://dn625ek8sfvsp" path="res://GD/UI/SettingsControl.gd" id="1_yne22"]
+[ext_resource type="Theme" uid="uid://dw0wgh7wqn2js" path="res://Tscn/UI/UI Theme.tres" id="2_wpcg4"]
 
 [node name="Settings Menu" type="Control"]
 layout_mode = 3
@@ -25,6 +26,7 @@ offset_right = 128.0
 offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("2_wpcg4")
 text = "Return"
 
 [node name="SFXSlider" type="HSlider" parent="."]
@@ -33,6 +35,7 @@ offset_left = 64.0
 offset_top = 312.0
 offset_right = 320.0
 offset_bottom = 328.0
+theme = ExtResource("2_wpcg4")
 min_value = -72.0
 max_value = 6.0
 
@@ -42,6 +45,7 @@ offset_left = 64.0
 offset_top = 272.0
 offset_right = 320.0
 offset_bottom = 313.0
+theme = ExtResource("2_wpcg4")
 theme_override_font_sizes/font_size = 26
 text = "Sound Effects"
 horizontal_alignment = 1
@@ -53,6 +57,7 @@ offset_left = 832.0
 offset_top = 312.0
 offset_right = 1088.0
 offset_bottom = 328.0
+theme = ExtResource("2_wpcg4")
 min_value = -72.0
 max_value = 6.0
 
@@ -62,6 +67,7 @@ offset_left = 832.0
 offset_top = 272.0
 offset_right = 1088.0
 offset_bottom = 313.0
+theme = ExtResource("2_wpcg4")
 theme_override_font_sizes/font_size = 26
 text = "Music Effects"
 horizontal_alignment = 1
@@ -78,6 +84,7 @@ offset_right = 1.25592
 offset_bottom = -0.0160065
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_wpcg4")
 text = "P to pause
 WASD to move
 Use the scroll wheel to zoom in and out

@@ -5,6 +5,7 @@ var settingsLoad = load("uid://7plmkuylx88q")
 
 @onready var playNode := $Play
 @onready var settingsNode := $Settings
+@onready var creditsNode := $Credits
 @onready var quitNode := $Quit
 
 @onready var musicPlayer := $MusicPlayer
@@ -23,6 +24,7 @@ func _process(delta: float) -> void:
 func ToggleAll():
 	playNode.visible = not playNode.visible
 	settingsNode.visible = not settingsNode.visible
+	creditsNode.visible = not creditsNode.visible
 	quitNode.visible = not quitNode.visible
 
 func _on_play_button_up() -> void:
@@ -43,6 +45,13 @@ func _on_settings_button_up() -> void:
 	add_child(addedSettings)
 	pass # Replace with function body.
 
+func _on_credits_button_up() -> void:
+	ToggleAll()
+	GameManager.uiClickPlayer.play()
+	await get_tree().create_timer(GameManager.uiClickPlayer.stream.get_length()).timeout
+	var addedSettings = settingsLoad.instantiate()
+	add_child(addedSettings)
+	pass # Replace with function body.
 
 func _on_quit_button_up() -> void:
 	GameManager.uiClickPlayer.play()

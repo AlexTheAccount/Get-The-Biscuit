@@ -1,0 +1,58 @@
+[gd_scene load_steps=2 format=3 uid="uid://cu4jhaanlju30"]
+
+[ext_resource type="Script" uid="uid://dqvwvtgtgckcu" path="res://GD/UI/MMControl.gd" id="1_myumj"]
+
+[node name="Main Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_myumj")
+
+[node name="TextEdit" type="TextEdit" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.111
+anchor_right = 0.889
+anchor_bottom = 0.691
+offset_left = 0.127991
+offset_right = -0.128052
+offset_bottom = 0.231964
+grow_horizontal = 2
+grow_vertical = 2
+text = "Made in Godot
+
+Music made in LMMS
+
+3D models made in Blender
+
+SFX from Pixabay and edited in WavePad:
+Floraphonic - 90s Game UI 11
+Phenala (Freesound) - Coin Pickup
+Bastianhallo (Freesound) - Cartoon jump
+Storegraphic - Soft Wind
+
+
+Thanks For Playing!
+"
+editable = false
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -123.5
+offset_top = -48.0
+offset_right = 123.5
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Quit"
+
+[connection signal="button_up" from="Quit" to="." method="_on_quit_button_up"]

@@ -6,6 +6,8 @@ var settingsLoad = load("uid://7plmkuylx88q")
 @onready var playNode := $Play
 @onready var settingsNode := $Settings
 @onready var quitNode := $Quit
+
+@onready var musicPlayer := $MusicPlayer
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GameManager.uiClickPlayer = $UIClickPlayer
@@ -14,6 +16,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if musicPlayer.is_playing() == false:
+		musicPlayer.play()
 	pass
 
 func ToggleAll():

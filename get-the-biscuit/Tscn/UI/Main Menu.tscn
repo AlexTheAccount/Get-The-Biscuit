@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cm6at32y0pl8t"]
+[gd_scene load_steps=4 format=3 uid="uid://cm6at32y0pl8t"]
 
 [ext_resource type="Script" uid="uid://dqvwvtgtgckcu" path="res://GD/UI/MMControl.gd" id="1_vuv5a"]
 [ext_resource type="AudioStream" uid="uid://b7eb3v4pjj7ny" path="res://MP3/UI Click.mp3" id="2_51q10"]
+[ext_resource type="AudioStream" uid="uid://dogn1v3mj8fr2" path="res://MP3/Get The Biscuits!.mp3" id="3_kdnj4"]
 
 [node name="Main Menu" type="Control"]
 layout_mode = 3
@@ -61,6 +62,10 @@ text = "Quit"
 [node name="UIClickPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_51q10")
 bus = &"SFX"
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_kdnj4")
+bus = &"Music"
 
 [connection signal="button_up" from="Play" to="." method="_on_play_button_up"]
 [connection signal="button_up" from="Settings" to="." method="_on_settings_button_up"]
